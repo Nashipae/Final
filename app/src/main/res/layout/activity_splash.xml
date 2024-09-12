@@ -14,18 +14,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@mipmap/databanner">
+            android:background="@mipmap/datacenter4">
+
+            <TextView
+                android:id="@+id/appNameTextView"
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textAlignment="center"
+                android:text="@string/mlinzi"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="60sp"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="130dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
                 android:text="@string/send_request"
                 android:background="@drawable/button3d"
-                android:layout_marginStart="110dp"
                 android:id="@+id/sendRequest"
-                android:paddingTop="15dp"
+                android:padding="15dp"
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold"
                 android:textAlignment="center"

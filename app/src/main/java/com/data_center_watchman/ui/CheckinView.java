@@ -17,6 +17,7 @@ import com.data_center_watchman.Constants;
 import com.data_center_watchman.R;
 import com.data_center_watchman.adapter.VisitorAdapter;
 import com.data_center_watchman.model.Visitor;
+import com.data_center_watchman.service.VisitorListAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +29,7 @@ public class CheckinView extends AppCompatActivity {
 
     Button btnCheckin;
     Visitor checkinVisitor;
+    VisitorListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,15 @@ public class CheckinView extends AppCompatActivity {
         btnCheckin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 checkinVisitor(checkinVisitor);
+
+
             }
         });
     }
     private Visitor getIncomingIntent(){
         if(getIntent().hasExtra("fullName") && getIntent().hasExtra("idNumber") && getIntent().hasExtra("company")
-                && getIntent().hasExtra("company")  && getIntent().hasExtra("reason")&& getIntent().hasExtra("crqNumber")
-                && getIntent().hasExtra("location")&&getIntent().hasExtra("id")){
+                && getIntent().hasExtra("reason")&& getIntent().hasExtra("crqNumber") && getIntent().hasExtra("location")&&getIntent().hasExtra("id")){
             String fullName = getIntent().getStringExtra("fullName");
             Integer id = getIntent().getIntExtra("id", 0);
             String idNumber = getIntent().getStringExtra("idNumber");
@@ -102,6 +104,7 @@ public class CheckinView extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Intent intent = new Intent(CheckinView.this, RequestsActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

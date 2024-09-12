@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Full Name: "
+            android:text="@string/full_name"
             android:padding="10dp"
             android:textAllCaps="true"
             android:textAlignment="textEnd"
@@ -26,7 +26,7 @@
             android:padding="10dp"
             android:textColor="#000"
             android:textAllCaps="true"
-            android:text="dummy"
+            android:text=""
             android:textAlignment="textStart"
             android:layout_gravity="start"/>
     </LinearLayout>
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="10dp"
-            android:text="ID Number:"
+            android:text="@string/id_number3"
             android:textAlignment="textEnd"
             android:textAllCaps="true" />
         <TextView
@@ -67,7 +67,7 @@
             android:textAlignment="textEnd"
             android:textAllCaps="true"
             android:layout_gravity="end"
-            android:text="@string/check_in_time"/>
+            android:text="@string/visitor_type"/>
         <TextView
             android:id="@+id/tv3"
             android:layout_width="match_parent"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="10dp"
-            android:text="Reason:"
+            android:text="@string/reason"
             android:textAlignment="textEnd" />
         <TextView
             android:id="@+id/tv5"
@@ -165,7 +165,8 @@
             android:textAlignment="textEnd"
             android:textAllCaps="true"
             android:layout_gravity="end"
-            android:text="@string/visitor_type"/>
+            android:text="@string/check_in_time"/>
+
         <TextView
             android:id="@+id/tv7"
             android:layout_width="match_parent"

@@ -42,6 +42,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.CheckInV
         holder.reason.setText(checkinList.get(position).getReason());
         holder.checkedIn.setText(checkinList.get(position).getTimeIn());
         holder.company.setText(checkinList.get(position).getCompany());
+        holder.crqNumber.setText(checkinList.get(position).getCrqNumber());
         Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
         holder.itemView.startAnimation(animation);
         holder.visitorDetail.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +59,6 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.CheckInV
                 intent.putExtra("location", checkinList.get(position).getLocation());
                 intent.putExtra("timeOut", checkinList.get(position).getTimeOut());
                 intent.putExtra("id", checkinList.get(position).getId());
-
                 mContext.startActivity(intent);
             }
         });
@@ -70,7 +70,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.CheckInV
         return checkinList.size();
     }
     public class CheckInViewHolder extends RecyclerView.ViewHolder {
-        TextView fullName, idNumber, reason, company, checkedIn,visitorDetail, checkedOut;
+        TextView fullName, idNumber, reason, company, checkedIn,visitorDetail, checkedOut, crqNumber;
 
         private CheckInViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +78,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.CheckInV
             idNumber = itemView.findViewById(R.id.idnumber);
             reason = itemView.findViewById(R.id.reason_for_visit);
             company = itemView.findViewById(R.id.visitor_type);
+            crqNumber = itemView.findViewById(R.id.crqNumber);
             checkedIn = itemView.findViewById(R.id.checkedIn);
             checkedOut = itemView.findViewById(R.id.checkedOut);
             visitorDetail= itemView.findViewById(R.id.visitorDetails);

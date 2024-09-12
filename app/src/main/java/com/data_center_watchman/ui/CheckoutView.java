@@ -44,7 +44,7 @@ public class CheckoutView extends AppCompatActivity {
     }
     private Visitor getIncomingIntent(){
         if(getIntent().hasExtra("fullName") && getIntent().hasExtra("idNumber") && getIntent().hasExtra("company")
-        && getIntent().hasExtra("company")  && getIntent().hasExtra("reason") && getIntent().hasExtra("checkedIn")&& getIntent().hasExtra("crqNumber")
+        && getIntent().hasExtra("crqNumber")  && getIntent().hasExtra("reason") && getIntent().hasExtra("checkedIn")&& getIntent().hasExtra("crqNumber")
         && getIntent().hasExtra("location")&& getIntent().hasExtra("timeOut") && getIntent().hasExtra("id")){
            String fullName = getIntent().getStringExtra("fullName");
            Integer id = getIntent().getIntExtra("id", 0);
@@ -65,7 +65,6 @@ public class CheckoutView extends AppCompatActivity {
         }
     }
     private void setVistorDetails(String fullName, String idNumber, String company, String reason, String checkedIn, String crqNumber, String location){
-
         TextView tv1 = findViewById(R.id.tv1);
         TextView tv2 = findViewById(R.id.tv2);
         TextView tv3 = findViewById(R.id.tv3);
@@ -75,25 +74,21 @@ public class CheckoutView extends AppCompatActivity {
         TextView tv7 = findViewById(R.id.tv6);
         tv1.setText(fullName);tv2.setText(idNumber);tv3.setText(company);tv4.setText(reason);tv5.setText(checkedIn);
         tv6.setText(crqNumber);tv7.setText(location);
-
     }
     public void checkoutVisitor(Visitor visitor){
         Log.d("VISITOR DETAIL","UPDATE: " + visitor.getId());
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
-
         Retrofit retrofit = builder.build();
 
         VisitorAdapter adapter = retrofit.create(VisitorAdapter.class);
-
         Call<Visitor> call = adapter.checkout(visitor);
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(CheckoutView.this);
         progressDialog.setMessage("Updating Time out.Please Wait.......");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-
         call.enqueue(new Callback<Visitor>() {
             @Override
             public void onResponse(Call<Visitor> call, Response<Visitor> response) {
@@ -104,6 +99,7 @@ public class CheckoutView extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                Intent intent = new Intent(CheckoutView.this, CheckedInActivity.class);
                                startActivity(intent);
+                                finish();
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -117,11 +113,9 @@ public class CheckoutView extends AppCompatActivity {
                 alert.setTitle("CHECK OUT");
                 alert.show();
             }
-
             @Override
             public void onFailure(Call<Visitor> call, Throwable t) {
                 Toast.makeText(CheckoutView.this, "creation failed!", Toast.LENGTH_SHORT).show();
-
             }
         });
 

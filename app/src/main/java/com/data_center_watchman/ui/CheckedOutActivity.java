@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -39,12 +42,12 @@ public class CheckedOutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         adapter = VisitorService.getRetrofitInstance().create(VisitorAdapter.class);
         Call<List<Visitor>> call = adapter.getAllCheckedOut();
+        isOnline();
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(CheckedOutActivity.this);
         progressDialog.setMessage("Loading.Please Wait.......");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-
         call.enqueue(new Callback<List<Visitor>>() {
             @Override
             public void onResponse(Call<List<Visitor>> call, Response<List<Visitor>> response) {
@@ -76,5 +79,16 @@ public class CheckedOutActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return  super.onOptionsItemSelected(item);
+    }
+    public boolean isOnline() {
+        ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert conMgr != null;
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(CheckedOutActivity.this, "No Internet connection!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }

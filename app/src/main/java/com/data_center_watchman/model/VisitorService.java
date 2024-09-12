@@ -1,7 +1,6 @@
 package com.data_center_watchman.model;
 
 import com.data_center_watchman.Constants;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
